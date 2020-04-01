@@ -1,12 +1,18 @@
 <template lang="pug">
   div
     #mental-health-questionnaire(:class="outerClass")
-      .inner
+      // intro screen
+      .intro(v-if="!quizInProgress" @click="startQuiz")
+        img(src="img/which-career-in-mental-health-is-right-for-you.png" alt="Which career in mental health is right for you?")
+        .lg.gray.bold So you’re interested in working in mental health, but not sure in what capacity?
+        .lg.gray This short quiz will suggest some job roles that you may not have considered before, based on the answers that you give. Click each job role to find out more.
+      // quiz
+      .inner(v-else)
         .left
           mental-health-jobs(v-for="i in 3" :key="`q-${i - 1}`" :color="colors[i - 1]" :jobs="getJobsForGroup(i - 1)" :group="groups[i - 1]")
         .mid
           // questions
-          .questions(v-if="quizInProgress")
+          .questions(v-if="!quizOver")
             .question-wrapper
               .question-number Question {{ questionNumber + 1 }}:
               .question-content
@@ -20,11 +26,13 @@
               button.questionnaire-button.yes(@click="yesOnClick") YES
               button.questionnaire-button.no(@click="noOnClick") NO
           // thank you message
-          .thank-you(v-if="quizOver")
-            p Quiz over!
+          .thank-you(v-else)
+            .thank-you-wrapper
+              img(src="img/thank-you-for-completing-the-quiz.png" alt="Thank you for completing our quiz")
+              .lg.gray The job roles that are still highlighted are the ones that best suit you, based on your answers provided.
+              .lg.gray.bold Click any role to find out more.
         .right
           mental-health-jobs(v-for="i in 5" :key="`q-${i + 2}`"  :color="colors[i + 2]" :jobs="getJobsForGroup(i + 2)" :group="groups[i + 2]")
-    pre {{ answers }}
 </template>
 
 <script>
@@ -37,7 +45,7 @@ export default {
   },
   data() {
     return {
-      quizInProgress: true,
+      quizInProgress: false,
       quizOver: false,
       questionNumber: 0,
       questions: [
@@ -264,8 +272,8 @@ export default {
     }
   },
   methods: {
-    startNewQuiz () {
-
+    startQuiz () {
+      this.quizInProgress = true;
     },
     getJobsForGroup (groupNumber) {
       return this.jobs.filter(job => job.group == groupNumber)
@@ -298,8 +306,10 @@ export default {
     },
     updateJobStates () {
       this.jobs.forEach(job => {
-        for(let i=0; i< this.questionNumber; i++) { 
-          console.log(job)
+        for(let i=0; i<this.questionNumber+1; i++) { 
+          // prereqs are [true, false] - 0 in either field means that condition nullifies the job IF it doesn't match the selection
+          if (job.prereqs[i][0] == 0 && this.answers[i] == true) job.enabled = false
+          else if (job.prereqs[i][1] == 0 && this.answers[i] == false) job.enabled = false
         }
       })
     },
@@ -307,7 +317,6 @@ export default {
       this.jobs.forEach(job => job.enabled = true)
     },
     finishQuiz () {
-      this.quizInProgress = false
       this.quizOver = true
     }
   },
@@ -328,22 +337,36 @@ $border: #0093d0;
 $question-color: #35478a;
 $question-font-size: 25pt;
 
-html, body, * {
-  margin: 0;
-  padding: 0;
-  font-size: 10px;
-  line-height: 1.2em;
-}
-
 #mental-health-questionnaire {
   display: block;
   width: $width;
   height: $height;
+
+  * {
+    margin: 0;
+    padding: 0;
+    font-size: 10px;
+    line-height: 1.2em;
+  }
+
+  .lg { 
+    font-size: 14pt; 
+    margin: 20px;
+  }
+  .bold { font-weight: 700; }
+  .gray { color: #6c6d70; }
+
   &.intro {
     background: url('../assets/intro-header.png') top center no-repeat;
   }
   &.quiz {
     background: url('../assets/quiz-background.jpg') center center no-repeat;
+  }
+
+  .intro {
+    padding: 200px 30px 0;
+    text-align: center;
+    cursor: pointer;
   }
 
   .inner {
@@ -431,6 +454,16 @@ html, body, * {
             background: $no;
           }
         }
+      }
+
+      .thank-you-wrapper {
+        height: 290px;
+        border: 3px solid $border;
+        background: white;
+        border-radius: .5em;
+        margin: 60px 30px 30px;
+        padding: 60px 10px 0;
+        text-align: center;
       }
     }
   }
