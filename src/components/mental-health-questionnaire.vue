@@ -79,14 +79,14 @@ export default {
         },
       ],
       groups: [
-        { margin: 10, padding: 7 },
-        { margin: 10, padding: 8 },
-        { margin: 10, padding: 7 },
-        { margin: 10, padding: 5 },
-        { margin: 5, padding: 5 },
-        { margin: 5, padding: 5 },
-        { margin: 5, padding: 5 },
-        { margin: 5, padding: 5 }
+        { margin: 8, padding: 5 },
+        { margin: 4, padding: 5 },
+        { margin: 4, padding: 5 },
+        { margin: 8, padding: 5 },
+        { margin: 3, padding: 5 },
+        { margin: 3, padding: 5 },
+        { margin: 3, padding: 5 },
+        { margin: 3, padding: 5 }
       ],
       jobs: [
         { // 0
@@ -273,10 +273,11 @@ $border: #0093d0;
 $question-color: #35478a;
 $question-font-size: 25pt;
 
-html, body {
+html, body, * {
   margin: 0;
   padding: 0;
   font-size: 10px;
+  line-height: 1.2em;
 }
 
 #mental-health-questionnaire {
@@ -358,6 +359,7 @@ html, body {
       .question-answer-options {
         margin: 0 30px;
         button {
+          cursor: pointer;
           width: calc(50% - 20px);
           height: 80px;
           font-size: 20pt;

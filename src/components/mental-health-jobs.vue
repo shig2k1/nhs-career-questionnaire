@@ -1,5 +1,5 @@
 <template lang="pug">
-  .jobs(:style="{ backgroundImage: `url(img/${color[0]}-strip.png)`, marginTop: `${group.margin}px` }")
+  .jobs(:style="{ backgroundImage: `url(img/${color[0]}-strip.png)`, marginTop: `${group.margin}px`, paddingTop: `${group.padding}px`, paddingBottom: `${group.padding}px` }")
     .job(v-for="(job, i) in jobs" :key="`j-${i - 1}`"  :class="active ? 'active' : ''" :style="{ paddingTop: `${group.padding}px` }")
       a(:href="job.url" target="_blank" :style="{ color: `#${color[1]}` }") {{ job.name }}
 </template>
@@ -46,7 +46,7 @@ export default {
       border-radius: .5em;
       margin: 5px 20px;
       padding: 5px;
-      font-size: 8.5pt;
+      font-size: 10pt;
       font-weight: 700;
 
       a {
