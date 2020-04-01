@@ -1,27 +1,30 @@
 <template lang="pug">
-  #mental-health-questionnaire(:class="outerClass")
-    .inner
-      .left
-        mental-health-jobs(v-for="i in 3" :key="`q-${i - 1}`" :color="colors[i - 1]" :jobs="getJobsForGroup(i - 1)" :group="groups[i - 1]")
-      .mid
-        // questions
-        .questions(v-if="quizInProgress")
-          .question-wrapper
-            .question-number Question {{ questionNumber + 1 }}:
-            .question-content
-              .icon
-                img(:src="`img/q${questionNumber + 1}-icon.png`")
-              .question-text-wrapper
-                .question-text
-                  .question-title {{ questions[questionNumber].headline }}
-                  .question-sub-title(v-if="questions[questionNumber].subtitle") {{ questions[questionNumber].subtitle }}
-          .question-answer-options
-            button.questionnaire-button.yes(@click="yesOnClick") YES
-            button.questionnaire-button.no(@click="noOnClick") NO
-        // thank you message
-        .thank-you(v-if="quizOver")
-      .right
-        mental-health-jobs(v-for="i in 5" :key="`q-${i + 2}`"  :color="colors[i + 2]" :jobs="getJobsForGroup(i + 2)" :group="groups[i + 2]")
+  div
+    #mental-health-questionnaire(:class="outerClass")
+      .inner
+        .left
+          mental-health-jobs(v-for="i in 3" :key="`q-${i - 1}`" :color="colors[i - 1]" :jobs="getJobsForGroup(i - 1)" :group="groups[i - 1]")
+        .mid
+          // questions
+          .questions(v-if="quizInProgress")
+            .question-wrapper
+              .question-number Question {{ questionNumber + 1 }}:
+              .question-content
+                .icon
+                  img(:src="`img/q${questionNumber + 1}-icon.png`")
+                .question-text-wrapper
+                  .question-text
+                    .question-title {{ questions[questionNumber].headline }}
+                    .question-sub-title(v-if="questions[questionNumber].subtitle") {{ questions[questionNumber].subtitle }}
+            .question-answer-options
+              button.questionnaire-button.yes(@click="yesOnClick") YES
+              button.questionnaire-button.no(@click="noOnClick") NO
+          // thank you message
+          .thank-you(v-if="quizOver")
+            p Quiz over!
+        .right
+          mental-health-jobs(v-for="i in 5" :key="`q-${i + 2}`"  :color="colors[i + 2]" :jobs="getJobsForGroup(i + 2)" :group="groups[i + 2]")
+    pre {{ answers }}
 </template>
 
 <script>
@@ -44,24 +47,24 @@ export default {
         },
         { // 1
           headline: `Do you have a medical degree or are you interested in undertaking a medical degree?`,
-          prereqs: [0],
+          prereqs: 0,
           img: `q1-icon`
         },
         { // 2
           headline: `Do you have a psychology degree`,
           img: `q3-icon`,
-          prereqs: [0]
+          prereqs: 0
         },
         { // 3
           headline: `Are you prepared to study at a post-graduate level?`,
           img: `q4-icon`,
-          prereqs: [0]
+          prereqs: 0
         },
         { // 4
           headline: `Are you working in a core profession* at the moment?`,
           subtitle: `*This includes, but is not limited to: applied psychology, nursing, medicine, and allied health professions.`,
           img: `q5-icon`,
-          prereqs: [0]
+          prereqs: 0
         },
         { // 5
           headline: `Do you have lived experience of mental health*? `,
@@ -75,157 +78,180 @@ export default {
         { // 7
           headline: `Do you have a background or experience in art, music or drama?`,
           img: `q8-icon`,
-          prereqs: [3]
+          prereqs: 3
         },
       ],
       groups: [
-        { margin: 8, padding: 5 },
-        { margin: 4, padding: 5 },
-        { margin: 4, padding: 5 },
-        { margin: 8, padding: 5 },
-        { margin: 3, padding: 5 },
-        { margin: 3, padding: 5 },
-        { margin: 3, padding: 5 },
-        { margin: 3, padding: 5 }
+        { margin: 14, padding: 6 },
+        { margin: 12, padding: 7 },
+        { margin: 12, padding: 6 },
+        { margin: 14, padding: 5 },
+        { margin: 5, padding: 8 },
+        { margin: 5, padding: 7 },
+        { margin: 5, padding: 5 },
+        { margin: 5, padding: 5 }
       ],
       jobs: [
         { // 0
           group: 0,
           name: `Mental Health Nurse`,
           url: ``,
-          prereqs: [[1, 0], [1, 1], [1, 1], [1, 1], [1, 1], [1, 1], [1, 0], [1, 1]]
+          prereqs: [[1, 0], [1, 1], [1, 1], [1, 1], [1, 1], [1, 1], [1, 0], [1, 1]],
+          enabled: true
         },
         { // 1
           group: 0,
           name: `Nursing associate`,
           url: ``,
-          prereqs: [[1, 1], [1, 1], [1, 1], [1, 1], [1, 1], [1, 1], [1, 0], [1, 1]]
+          prereqs: [[1, 1], [1, 1], [1, 1], [1, 1], [1, 1], [1, 1], [1, 0], [1, 1]],
+          enabled: true
         },
         { // 2
           group: 1,
           name: `Mental Health Support Worker`,
           url: ``,
-          prereqs: [[1, 1], [1, 1], [1, 1], [1, 1], [1, 1], [1, 1], [1, 0], [1, 1]]
+          prereqs: [[1, 1], [1, 1], [1, 1], [1, 1], [1, 1], [1, 1], [1, 0], [1, 1]],
+          enabled: true
         },
         { // 3
           group: 1,
           name: `Support, Time and Recovery Worker`,
           url: ``,
-          prereqs: [[1, 1], [1, 1], [1, 1], [1, 1], [1, 1], [1, 1], [1, 0], [1, 1]]
+          prereqs: [[1, 1], [1, 1], [1, 1], [1, 1], [1, 1], [1, 1], [1, 0], [1, 1]],
+          enabled: true
         },
         { // 4
           group: 1,
           name: `Assistant Practitioner`,
           url: ``,
-          prereqs: [[1, 1], [1, 1], [1, 1], [1, 1], [1, 1], [1, 1], [1, 0], [1, 1]]
+          prereqs: [[1, 1], [1, 1], [1, 1], [1, 1], [1, 1], [1, 1], [1, 0], [1, 1]],
+          enabled: true
         },
         { // 5
           group: 1,
           name: `Assistant psychologist`,
           url: ``,
-          prereqs: [[1, 0], [1, 1], [1, 0], [1, 1], [1, 1], [1, 1], [1, 0], [1, 1]]
+          prereqs: [[1, 0], [1, 1], [1, 0], [1, 1], [1, 1], [1, 1], [1, 0], [1, 1]],
+          enabled: true
         },
         { // 6
           group: 1,
           name: `OT Assistant`,
           url: ``,
-          prereqs: [[1, 1], [1, 1], [1, 1], [1, 1], [1, 1], [1, 1], [1, 0], [1, 1]]
+          prereqs: [[1, 1], [1, 1], [1, 1], [1, 1], [1, 1], [1, 1], [1, 0], [1, 1]],
+          enabled: true
         },
         { // 7
           group: 1,
           name: `Peer Support Worker`,
           url: ``,
-          prereqs: [[1, 1], [1, 1], [1, 1], [1, 1], [1, 1], [1, 0], [1, 0], [1, 1]]
+          prereqs: [[1, 1], [1, 1], [1, 1], [1, 1], [1, 1], [1, 0], [1, 0], [1, 1]],
+          enabled: true
         },
         { // 8
           group: 2,
           name: `Psychological Wellbeing Practitioner`,
           url: ``,
-          prereqs: [[1, 1], [1, 1], [1, 1], [1, 1], [1, 1], [1, 1], [1, 0], [1, 1]]
+          prereqs: [[1, 1], [1, 1], [1, 1], [1, 1], [1, 1], [1, 1], [1, 0], [1, 1]],
+          enabled: true
         },
         { // 9
           group: 2,
           name: `Education Mental Health Practitioner`,
           url: ``,
-          prereqs: [[1, 0], [1, 1], [1, 1], [1, 1], [1, 1], [1, 1], [0, 1], [1, 1]]
+          prereqs: [[1, 0], [1, 1], [1, 1], [1, 1], [1, 1], [1, 1], [0, 1], [1, 1]],
+          enabled: true
         },
         { // 10
           group: 2,
           name: `Child and Young People Wellbeing Practitioner`,
           url: ``,
-          prereqs: [[1, 0], [1, 1], [1, 1], [1, 1], [1, 1], [1, 1], [0, 1], [1, 1]]
+          prereqs: [[1, 0], [1, 1], [1, 1], [1, 1], [1, 1], [1, 1], [0, 1], [1, 1]],
+          enabled: true
         },
         { // 11
           group: 3,
           name: `Psychotherapist`,
           url: ``,
-          prereqs: [[1, 0], [1, 1], [1, 1], [1, 1], [1, 1], [1, 1], [1, 0], [1, 1]]
+          prereqs: [[1, 0], [1, 1], [1, 1], [1, 1], [1, 1], [1, 1], [1, 0], [1, 1]],
+          enabled: true
         },
         { // 12
           group: 3,
           name: `Counsellor`,
           url: ``,
-          prereqs: [[1, 0], [1, 1], [1, 1], [1, 1], [1, 1], [1, 1], [1, 0], [1, 1]]
+          prereqs: [[1, 0], [1, 1], [1, 1], [1, 1], [1, 1], [1, 1], [1, 0], [1, 1]],
+          enabled: true
         },
         { // 13
           group: 3,
           name: `Child and Adolescent Psychotherapist`,
           url: ``,
-          prereqs: [[1, 0], [1, 1], [1, 1], [1, 0], [1, 1], [1, 1], [0, 1], [1, 1]]
+          prereqs: [[1, 0], [1, 1], [1, 1], [1, 0], [1, 1], [1, 1], [0, 1], [1, 1]],
+          enabled: true
         },
         { // 14
           group: 4,
           name: `Psychiatrist`,
           url: ``,
-          prereqs: [[1, 0], [1, 0], [1, 1], [1, 0], [1, 1], [1, 1], [1, 0], [1, 1]]
+          prereqs: [[1, 0], [1, 0], [1, 1], [1, 0], [1, 1], [1, 1], [1, 0], [1, 1]],
+          enabled: true
         },
         { // 15
           group: 5,
           name: `Social Worker`,
           url: ``,
-          prereqs: [[1, 0], [1, 1], [1, 1], [1, 1], [1, 1], [1, 1], [1, 0], [1, 1]]
+          prereqs: [[1, 0], [1, 1], [1, 1], [1, 1], [1, 1], [1, 1], [1, 0], [1, 1]],
+          enabled: true
         },
         { // 16
           group: 5,
           name: `Occupational Therapist`,
           url: ``,
-          prereqs: [[1, 0], [1, 1], [1, 1], [1, 1], [1, 1], [1, 1], [1, 0], [1, 1]]
+          prereqs: [[1, 0], [1, 1], [1, 1], [1, 1], [1, 1], [1, 1], [1, 0], [1, 1]],
+          enabled: true
         },
         { // 17
           group: 6,
           name: `Clinical Psychologist`,
           url: ``,
-          prereqs: [[1, 0], [1, 1], [1, 1], [1, 1], [1, 1], [1, 1], [1, 0], [1, 1]]
+          prereqs: [[1, 0], [1, 1], [1, 1], [1, 1], [1, 1], [1, 1], [1, 0], [1, 1]],
+          enabled: true
         },
         { // 18
           group: 6,
           name: `Counselling Psychologist`,
           url: ``,
-          prereqs: [[1, 0], [1, 1], [1, 0], [1, 0], [1, 1], [1, 1], [1, 0], [1, 1]]
+          prereqs: [[1, 0], [1, 1], [1, 0], [1, 0], [1, 1], [1, 1], [1, 0], [1, 1]],
+          enabled: true
         },
         { // 19
           group: 6,
           name: `High Intensity Therapist`,
           url: ``,
-          prereqs: [[1, 0], [1, 1], [1, 1], [1, 1], [1, 0], [1, 1], [1, 0], [1, 1]]
+          prereqs: [[1, 0], [1, 1], [1, 1], [1, 1], [1, 0], [1, 1], [1, 0], [1, 1]],
+          enabled: true
         },
         { // 20
           group: 7,
           name: `Music Therapist`,
           url: ``,
-          prereqs: [[1, 0], [1, 1], [1, 1], [1, 0], [1, 1], [1, 1], [1, 0], [1, 0]]
+          prereqs: [[1, 0], [1, 1], [1, 1], [1, 0], [1, 1], [1, 1], [1, 0], [1, 0]],
+          enabled: true
         },
         { // 20
           group: 7,
           name: `Art Therapist`,
           url: ``,
-          prereqs: [[1, 0], [1, 1], [1, 1], [1, 0], [1, 1], [1, 1], [1, 0], [1, 0]]
+          prereqs: [[1, 0], [1, 1], [1, 1], [1, 0], [1, 1], [1, 1], [1, 0], [1, 0]],
+          enabled: true
         },
         { // 20
           group: 7,
           name: `Drama Therapist`,
           url: ``,
-          prereqs: [[1, 0], [1, 1], [1, 1], [1, 0], [1, 1], [1, 1], [1, 0], [1, 0]]
+          prereqs: [[1, 0], [1, 1], [1, 1], [1, 0], [1, 1], [1, 1], [1, 0], [1, 0]],
+          enabled: true
         },
       ],
       colors: [['blue', '007ac3'], ['pink', 'e306a4'], ['teal', '30b0ab'], ['orange', 'f8991c'], ['turquoise', '1cdce7'], ['green', '40ae49'], ['hot-pink', 'e45296'], ['purple', '41016f']],
@@ -234,12 +260,7 @@ export default {
   },
   computed: {
     outerClass () {
-      return this.quizInProgress ? `quiz` : `intro`
-    },
-    highlightedJobState () {
-      return this.jobs.map(answer => {
-        if (this.answers.length === 0) return true
-      })
+      return (this.quizInProgress || this.quizOver) ? `quiz` : `intro`
     }
   },
   methods: {
@@ -250,10 +271,44 @@ export default {
       return this.jobs.filter(job => job.group == groupNumber)
     },
     yesOnClick () {
-      this.questionNumber += 1
+      this.answers.push(true)
+      this.nextQuestion()
     },
     noOnClick () {
+      this.answers.push(false)
+      this.nextQuestion()
+    },
+    nextQuestion () {
+      // check there are more questions
+      if (this.questionNumber == this.questions.length - 1) this.finishQuiz()
+      // check the upcoming question's prequesites are settled
+      else {
+        // update jobs
+        this.updateJobStates()
 
+        // next or finish
+        let nextQuestion = this.questions[(this.questionNumber + 1)]
+        this.questionNumber += 1
+        // if the next question is invalid because of previous choices, skip itthis.questionNumber += 1
+        if (nextQuestion.prereqs !== undefined && !this.answers[nextQuestion.prereqs]) {
+          this.answers.push(undefined)
+          this.nextQuestion()
+        }
+      }
+    },
+    updateJobStates () {
+      this.jobs.forEach(job => {
+        for(let i=0; i< this.questionNumber; i++) { 
+          console.log(job)
+        }
+      })
+    },
+    resetJobStates () {
+      this.jobs.forEach(job => job.enabled = true)
+    },
+    finishQuiz () {
+      this.quizInProgress = false
+      this.quizOver = true
     }
   },
   created () {
@@ -295,7 +350,7 @@ html, body, * {
     display: flex;
 
     .left, .right {
-      width: 170px;
+      width: 180px;
     }
     .left {
       text-align: left;

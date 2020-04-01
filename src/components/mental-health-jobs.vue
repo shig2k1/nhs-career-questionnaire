@@ -1,13 +1,13 @@
 <template lang="pug">
   .jobs(:style="{ backgroundImage: `url(img/${color[0]}-strip.png)`, marginTop: `${group.margin}px`, paddingTop: `${group.padding}px`, paddingBottom: `${group.padding}px` }")
-    .job(v-for="(job, i) in jobs" :key="`j-${i - 1}`"  :class="active ? 'active' : ''" :style="{ paddingTop: `${group.padding}px` }")
+    .job(v-for="(job, i) in jobs" :key="`j-${i - 1}`"  :class="{ active: job.enabled }" :style="{ paddingTop: `${group.padding}px`, marginTop: `${group.padding}px`, marginBottom: `${group.padding}px` }")
       a(:href="job.url" target="_blank" :style="{ color: `#${color[1]}` }") {{ job.name }}
 </template>
 
 <script>
 export default {
   name: 'mental-health-jobs',
-  props: ['color', 'jobs', 'group', 'active'],
+  props: ['color', 'jobs', 'group'],
   data() {
     return {
     }
@@ -42,11 +42,13 @@ export default {
     margin: $margin 0;
 
     .job {
-      background: white;
+      background: rgba(255, 255, 255, 0.5);
+
+      &.active { background: white; }
       border-radius: .5em;
       margin: 5px 20px;
       padding: 5px;
-      font-size: 10pt;
+      font-size: 8pt;
       font-weight: 700;
 
       a {
