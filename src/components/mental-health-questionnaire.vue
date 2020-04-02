@@ -51,41 +51,33 @@ export default {
       questions: [
         { // 0
           headline: `Do you have an undergraduate degree or are you prepared to study at an undergraduate level?`,
-          img: `q1-icon`
         },
         { // 1
           headline: `Do you have a medical degree or are you interested in undertaking a medical degree?`,
           prereqs: 0,
-          img: `q1-icon`
         },
         { // 2
           headline: `Do you have a psychology degree`,
-          img: `q3-icon`,
           prereqs: 0
         },
         { // 3
           headline: `Are you prepared to study at a post-graduate level?`,
-          img: `q4-icon`,
           prereqs: 0
         },
         { // 4
           headline: `Are you working in a core profession* at the moment?`,
           subtitle: `*This includes, but is not limited to: applied psychology, nursing, medicine, and allied health professions.`,
-          img: `q5-icon`,
           prereqs: 0
         },
         { // 5
           headline: `Do you have lived experience of mental health*? `,
           subtitle: `*Lived experience means you are living or have lived with mental illness, or you support or have supported someone living with mental illness.`,
-          img: `q6-icon`
         },
         { // 6
           headline: `Are you interested in mostly working with adult patients?`,
-          img: `q7-icon`
         },
         { // 7
           headline: `Do you have a background or experience in art, music or drama?`,
-          img: `q8-icon`,
           prereqs: 3
         },
       ],
@@ -262,7 +254,16 @@ export default {
           enabled: true
         },
       ],
-      colors: [['blue', '007ac3'], ['pink', 'e306a4'], ['teal', '30b0ab'], ['orange', 'f8991c'], ['turquoise', '1cdce7'], ['green', '40ae49'], ['hot-pink', 'e45296'], ['purple', '41016f']],
+      colors: [
+        ['blue', '007ac3'],
+        ['pink', 'e306a4'],
+        ['teal', '30b0ab'],
+        ['orange', 'f8991c'],
+        ['turquoise', '1cdce7'],
+        ['green', '40ae49'],
+        ['hot-pink', 'e45296'],
+        ['purple', '41016f'],
+      ],
       answers: []
     }
   },
@@ -297,7 +298,7 @@ export default {
         // next or finish
         let nextQuestion = this.questions[(this.questionNumber + 1)]
         this.questionNumber += 1
-        // if the next question is invalid because of previous choices, skip itthis.questionNumber += 1
+        // if the next question is invalid because of previous choices, skip it
         if (nextQuestion.prereqs !== undefined && !this.answers[nextQuestion.prereqs]) {
           this.answers.push(undefined)
           this.nextQuestion()
@@ -319,9 +320,6 @@ export default {
     finishQuiz () {
       this.quizOver = true
     }
-  },
-  created () {
-
   }
 }
 </script>
@@ -349,19 +347,19 @@ $question-font-size: 25pt;
     line-height: 1.2em;
   }
 
-  .lg { 
-    font-size: 14pt; 
-    margin: 20px;
-  }
-  .bold { font-weight: 700; }
-  .gray { color: #6c6d70; }
-
   &.intro {
     background: url('../assets/intro-header.png') top center no-repeat;
   }
   &.quiz {
     background: url('../assets/quiz-background.jpg') center center no-repeat;
   }
+
+  .lg { 
+    font-size: 14pt; 
+    margin: 20px;
+  }
+  .bold { font-weight: 700; }
+  .gray { color: #6c6d70; }
 
   .intro {
     padding: 200px 30px 0;
@@ -383,7 +381,7 @@ $question-font-size: 25pt;
     }
     .mid {
       flex: 1;
-      
+
       .question-wrapper {
         height: 250px;
         border: 3px solid $border;
@@ -391,7 +389,7 @@ $question-font-size: 25pt;
         border-radius: .5em;
         margin: 60px 30px 30px;
         padding: 10px;
-        // transform: translateY(-50%);
+
         .question-number {
           font-size: 13pt;
           font-weight: 700;
