@@ -14,7 +14,7 @@
           // questions
           .questions(v-if="!quizOver")
             .question-wrapper
-              .question-number Question {{ questionNumber + 1 }}:
+              // .question-number Question {{ questionNumber + 1 }}:
               .question-content
                 .icon
                   img(:src="`img/q${questionNumber + 1}-icon.png`")
@@ -37,6 +37,9 @@
 
 <script>
 import MentalHealthJobs from './mental-health-jobs'
+import axios from 'axios'
+
+//const data = () => import(/* webpackChunkName: 'Anything' */ '../data.js')
 
 export default {
   name: 'mental-health-questionnaire',
@@ -45,6 +48,7 @@ export default {
   },
   data() {
     return {
+      jobs: [],
       quizInProgress: false,
       quizOver: false,
       questionNumber: 0,
@@ -91,179 +95,7 @@ export default {
         { margin: 5, padding: 5 },
         { margin: 5, padding: 5 }
       ],
-      jobs: [
-        { // 0
-          group: 0,
-          name: `Mental Health Nurse`,
-          url: ``,
-          prereqs: [[1, 0], [1, 1], [1, 1], [1, 1], [1, 1], [1, 1], [1, 0], [1, 1]],
-          enabled: true
-        },
-        { // 1
-          group: 0,
-          name: `Nursing associate`,
-          url: ``,
-          prereqs: [[1, 1], [1, 1], [1, 1], [1, 1], [1, 1], [1, 1], [1, 0], [1, 1]],
-          enabled: true
-        },
-        { // 2
-          group: 1,
-          name: `Mental Health Support Worker`,
-          url: ``,
-          prereqs: [[1, 1], [1, 1], [1, 1], [1, 1], [1, 1], [1, 1], [1, 0], [1, 1]],
-          enabled: true
-        },
-        { // 3
-          group: 1,
-          name: `Support, Time and Recovery Worker`,
-          url: ``,
-          prereqs: [[1, 1], [1, 1], [1, 1], [1, 1], [1, 1], [1, 1], [1, 0], [1, 1]],
-          enabled: true
-        },
-        { // 4
-          group: 1,
-          name: `Assistant Practitioner`,
-          url: ``,
-          prereqs: [[1, 1], [1, 1], [1, 1], [1, 1], [1, 1], [1, 1], [1, 0], [1, 1]],
-          enabled: true
-        },
-        { // 5
-          group: 1,
-          name: `Assistant psychologist`,
-          url: ``,
-          prereqs: [[1, 0], [1, 1], [1, 0], [1, 1], [1, 1], [1, 1], [1, 0], [1, 1]],
-          enabled: true
-        },
-        { // 6
-          group: 1,
-          name: `OT Assistant`,
-          url: ``,
-          prereqs: [[1, 1], [1, 1], [1, 1], [1, 1], [1, 1], [1, 1], [1, 0], [1, 1]],
-          enabled: true
-        },
-        { // 7
-          group: 1,
-          name: `Peer Support Worker`,
-          url: ``,
-          prereqs: [[1, 1], [1, 1], [1, 1], [1, 1], [1, 1], [1, 0], [1, 0], [1, 1]],
-          enabled: true
-        },
-        { // 8
-          group: 2,
-          name: `Psychological Wellbeing Practitioner`,
-          url: ``,
-          prereqs: [[1, 1], [1, 1], [1, 1], [1, 1], [1, 1], [1, 1], [1, 0], [1, 1]],
-          enabled: true
-        },
-        { // 9
-          group: 2,
-          name: `Education Mental Health Practitioner`,
-          url: ``,
-          prereqs: [[1, 0], [1, 1], [1, 1], [1, 1], [1, 1], [1, 1], [0, 1], [1, 1]],
-          enabled: true
-        },
-        { // 10
-          group: 2,
-          name: `Child and Young People Wellbeing Practitioner`,
-          url: ``,
-          prereqs: [[1, 0], [1, 1], [1, 1], [1, 1], [1, 1], [1, 1], [0, 1], [1, 1]],
-          enabled: true
-        },
-        { // 11
-          group: 3,
-          name: `Psychotherapist`,
-          url: ``,
-          prereqs: [[1, 0], [1, 1], [1, 1], [1, 1], [1, 1], [1, 1], [1, 0], [1, 1]],
-          enabled: true
-        },
-        { // 12
-          group: 3,
-          name: `Counsellor`,
-          url: ``,
-          prereqs: [[1, 0], [1, 1], [1, 1], [1, 1], [1, 1], [1, 1], [1, 0], [1, 1]],
-          enabled: true
-        },
-        { // 13
-          group: 3,
-          name: `Child and Adolescent Psychotherapist`,
-          url: ``,
-          prereqs: [[1, 0], [1, 1], [1, 1], [1, 0], [1, 1], [1, 1], [0, 1], [1, 1]],
-          enabled: true
-        },
-        { // 14
-          group: 4,
-          name: `Psychiatrist`,
-          url: ``,
-          prereqs: [[1, 0], [1, 0], [1, 1], [1, 0], [1, 1], [1, 1], [1, 0], [1, 1]],
-          enabled: true
-        },
-        { // 15
-          group: 5,
-          name: `Social Worker`,
-          url: ``,
-          prereqs: [[1, 0], [1, 1], [1, 1], [1, 1], [1, 1], [1, 1], [1, 0], [1, 1]],
-          enabled: true
-        },
-        { // 16
-          group: 5,
-          name: `Occupational Therapist`,
-          url: ``,
-          prereqs: [[1, 0], [1, 1], [1, 1], [1, 1], [1, 1], [1, 1], [1, 0], [1, 1]],
-          enabled: true
-        },
-        { // 17
-          group: 6,
-          name: `Clinical Psychologist`,
-          url: ``,
-          prereqs: [[1, 0], [1, 1], [1, 1], [1, 1], [1, 1], [1, 1], [1, 0], [1, 1]],
-          enabled: true
-        },
-        { // 18
-          group: 6,
-          name: `Counselling Psychologist`,
-          url: ``,
-          prereqs: [[1, 0], [1, 1], [1, 0], [1, 0], [1, 1], [1, 1], [1, 0], [1, 1]],
-          enabled: true
-        },
-        { // 19
-          group: 6,
-          name: `High Intensity Therapist`,
-          url: ``,
-          prereqs: [[1, 0], [1, 1], [1, 1], [1, 1], [1, 0], [1, 1], [1, 0], [1, 1]],
-          enabled: true
-        },
-        { // 20
-          group: 7,
-          name: `Music Therapist`,
-          url: ``,
-          prereqs: [[1, 0], [1, 1], [1, 1], [1, 0], [1, 1], [1, 1], [1, 0], [1, 0]],
-          enabled: true
-        },
-        { // 20
-          group: 7,
-          name: `Art Therapist`,
-          url: ``,
-          prereqs: [[1, 0], [1, 1], [1, 1], [1, 0], [1, 1], [1, 1], [1, 0], [1, 0]],
-          enabled: true
-        },
-        { // 20
-          group: 7,
-          name: `Drama Therapist`,
-          url: ``,
-          prereqs: [[1, 0], [1, 1], [1, 1], [1, 0], [1, 1], [1, 1], [1, 0], [1, 0]],
-          enabled: true
-        },
-      ],
-      colors: [
-        ['blue', '007ac3'],
-        ['pink', 'e306a4'],
-        ['teal', '30b0ab'],
-        ['orange', 'f8991c'],
-        ['turquoise', '1cdce7'],
-        ['green', '40ae49'],
-        ['hot-pink', 'e45296'],
-        ['purple', '41016f'],
-      ],
+      colors: [['blue', '007ac3'], ['pink', 'e306a4'], ['teal', '30b0ab'], ['orange', 'f8991c'], ['turquoise', '1cdce7'], ['green', '40ae49'], ['hot-pink', 'e45296'], ['purple', '41016f']],
       answers: []
     }
   },
@@ -320,6 +152,13 @@ export default {
     finishQuiz () {
       this.quizOver = true
     }
+  },
+  created () {
+    // load the jobs
+    axios.get('/data.json')
+      .then(res => {
+        this.jobs = res.data 
+      })
   }
 }
 </script>
@@ -396,6 +235,7 @@ $question-font-size: 25pt;
           color: $border;
         }
         .question-content {
+          margin-top: 20px;
           text-align: center;
           
           .icon {
