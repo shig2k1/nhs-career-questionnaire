@@ -1,0 +1,163 @@
+[
+  {
+    "group": 0,
+    "name": "Mental Health Nurse",
+    "url": "http://www.google.com",
+    "prereqs": [[1, 0], [1, 1], [1, 1], [1, 1], [1, 1], [1, 1], [1, 0], [1, 1]],
+    "enabled": true
+  },
+  {
+    "group": 0,
+    "name": "Nursing associate",
+    "url": "",
+    "prereqs": [[1, 1], [1, 1], [1, 1], [1, 1], [1, 1], [1, 1], [1, 0], [1, 1]],
+    "enabled": true
+  },
+  {
+    "group": 1,
+    "name": "Mental Health Support Worker",
+    "url": "",
+    "prereqs": [[1, 1], [1, 1], [1, 1], [1, 1], [1, 1], [1, 1], [1, 0], [1, 1]],
+    "enabled": true
+  },
+  {
+    "group": 1,
+    "name": "Support, Time and Recovery Worker",
+    "url": "",
+    "prereqs": [[1, 1], [1, 1], [1, 1], [1, 1], [1, 1], [1, 1], [1, 0], [1, 1]],
+    "enabled": true
+  },
+  {
+    "group": 1,
+    "name": "Assistant Practitioner",
+    "url": "",
+    "prereqs": [[1, 1], [1, 1], [1, 1], [1, 1], [1, 1], [1, 1], [1, 0], [1, 1]],
+    "enabled": true
+  },
+  {
+    "group": 1,
+    "name": "Assistant psychologist",
+    "url": "",
+    "prereqs": [[1, 0], [1, 1], [1, 0], [1, 1], [1, 1], [1, 1], [1, 0], [1, 1]],
+    "enabled": true
+  },
+  {
+    "group": 1,
+    "name": "OT Assistant",
+    "url": "",
+    "prereqs": [[1, 1], [1, 1], [1, 1], [1, 1], [1, 1], [1, 1], [1, 0], [1, 1]],
+    "enabled": true
+  },
+  {
+    "group": 1,
+    "name": "Peer Support Worker",
+    "url": "",
+    "prereqs": [[1, 1], [1, 1], [1, 1], [1, 1], [1, 1], [1, 0], [1, 0], [1, 1]],
+    "enabled": true
+  },
+  {
+    "group": 2,
+    "name": "Psychological Wellbeing Practitioner",
+    "url": "",
+    "prereqs": [[1, 1], [1, 1], [1, 1], [1, 1], [1, 1], [1, 1], [1, 0], [1, 1]],
+    "enabled": true
+  },
+  {
+    "group": 2,
+    "name": "Education Mental Health Practitioner",
+    "url": "",
+    "prereqs": [[1, 0], [1, 1], [1, 1], [1, 1], [1, 1], [1, 1], [0, 1], [1, 1]],
+    "enabled": true
+  },
+  {
+    "group": 2,
+    "name": "Child and Young People Wellbeing Practitioner",
+    "url": "",
+    "prereqs": [[1, 0], [1, 1], [1, 1], [1, 1], [1, 1], [1, 1], [0, 1], [1, 1]],
+    "enabled": true
+  },
+  {
+    "group": 3,
+    "name": "Psychotherapist",
+    "url": "",
+    "prereqs": [[1, 0], [1, 1], [1, 1], [1, 1], [1, 1], [1, 1], [1, 0], [1, 1]],
+    "enabled": true
+  },
+  {
+    "group": 3,
+    "name": "Counsellor",
+    "url": "",
+    "prereqs": [[1, 0], [1, 1], [1, 1], [1, 1], [1, 1], [1, 1], [1, 0], [1, 1]],
+    "enabled": true
+  },
+  {
+    "group": 3,
+    "name": "Child and Adolescent Psychotherapist",
+    "url": "",
+    "prereqs": [[1, 0], [1, 1], [1, 1], [1, 0], [1, 1], [1, 1], [0, 1], [1, 1]],
+    "enabled": true
+  },
+  {
+    "group": 4,
+    "name": "Psychiatrist",
+    "url": "",
+    "prereqs": [[1, 0], [1, 0], [1, 1], [1, 0], [1, 1], [1, 1], [1, 0], [1, 1]],
+    "enabled": true
+  },
+  {
+    "group": 5,
+    "name": "Social Worker",
+    "url": "",
+    "prereqs": [[1, 0], [1, 1], [1, 1], [1, 1], [1, 1], [1, 1], [1, 0], [1, 1]],
+    "enabled": true
+  },
+  {
+    "group": 5,
+    "name": "Occupational Therapist",
+    "url": "",
+    "prereqs": [[1, 0], [1, 1], [1, 1], [1, 1], [1, 1], [1, 1], [1, 0], [1, 1]],
+    "enabled": true
+  },
+  {
+    "group": 6,
+    "name": "Clinical Psychologist",
+    "url": "",
+    "prereqs": [[1, 0], [1, 1], [1, 1], [1, 1], [1, 1], [1, 1], [1, 0], [1, 1]],
+    "enabled": true
+  },
+  {
+    "group": 6,
+    "name": "Counselling Psychologist",
+    "url": "",
+    "prereqs": [[1, 0], [1, 1], [1, 0], [1, 0], [1, 1], [1, 1], [1, 0], [1, 1]],
+    "enabled": true
+  },
+  {
+    "group": 6,
+    "name": "High Intensity Therapist",
+    "url": "",
+    "prereqs": [[1, 0], [1, 1], [1, 1], [1, 1], [1, 0], [1, 1], [1, 0], [1, 1]],
+    "enabled": true
+  },
+  {
+    "group": 7,
+    "name": "Music Therapist",
+    "url": "",
+    "prereqs": [[1, 0], [1, 1], [1, 1], [1, 0], [1, 1], [1, 1], [1, 0], [1, 0]],
+    "enabled": true
+  },
+  {
+    "group": 7,
+    "name": "Art Therapist",
+    "url": "",
+    "prereqs": [[1, 0], [1, 1], [1, 1], [1, 0], [1, 1], [1, 1], [1, 0], [1, 0]],
+    "enabled": true
+  },
+  {
+    "group": 7,
+    "name": "Drama Therapist",
+    "url": "",
+    "prereqs": [[1, 0], [1, 1], [1, 1], [1, 0], [1, 1], [1, 1], [1, 0], [1, 0]],
+    "enabled": true
+  }
+]
