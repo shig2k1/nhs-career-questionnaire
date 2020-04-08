@@ -155,7 +155,7 @@ export default {
   },
   created () {
     // load the jobs
-    axios.get('data.json')
+    axios.get('data.js')
       .then(res => {
         this.jobs = res.data 
       })
